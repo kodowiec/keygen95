@@ -1,5 +1,7 @@
-# windows95_flutter
+# keygen95 
 
-![screencast of the Win95Button in action](https://lh3.googleusercontent.com/KDxvYE2ItKcRLoTtGeHakJGP662sr1-xiJ1gF_sJGdMZFYcf5CVmDk7FrTdcfxvAw6KHQ12J7vZogws=w392-h762-rw-no)
+Just a very simple (my first in flutter) app to generate keys for Microsoft products from '95 era, as described by [medium.com](https://medium.com/@dgurney/so-you-want-to-generate-license-keys-for-old-microsoft-products-a355c8bf5408).
 
-A simple project showing how one would implement a Windows95-like interface in Flutter.
+Button design kindly borrowed from [win95_flutter](https://github.com/filiph/win95_flutter).
+
+Made for educational purposes only, author does not encourage or endorse obtaining pirated software.
