@@ -1,4 +1,10 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+
+import 'dart:ui';
+
+import 'win95.dart';
 
 void main() => runApp(new MyApp());
 
@@ -6,11 +12,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
-      title: 'Flutter Demo',
+      title: 'keygen95',
       theme: new ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: new MyHomePage(title: 'Flutter Demo Home Page'),
+      home: new MyHomePage(title: 'keygen95'),
     );
   }
 }
@@ -45,6 +51,10 @@ class Win95Button extends StatefulWidget {
   _Win95ButtonState createState() => _Win95ButtonState();
 }
 
+String _key = "";
+
+num _fontSize = 25.0;
+
 class _MyHomePageState extends State<MyHomePage> {
   static final _winFontStyle = TextStyle(
     color: Colors.black,
@@ -52,58 +62,124 @@ class _MyHomePageState extends State<MyHomePage> {
     fontSize: 18.0,
   );
 
-  int _counter = 0;
-
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      backgroundColor: const Color(0xFFbfb8bf),
-      appBar: new AppBar(
-        title: new Text(widget.title),
-      ),
+      backgroundColor: const Color.fromARGB(255, 0, 129, 130),
+      appBar: null,
       body: new Center(
         child: new Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.max,
           children: <Widget>[
-            new Text(
-              'You have pushed the button this many times:',
-              style: _winFontStyle,
-            ),
-            new Text(
-              '$_counter',
-              style: _winFontStyle.copyWith(fontSize: 54.0),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Win95Button(text: "Increment", onTap: _incrementCounter),
-                Win95Button(text: "Decrement", onTap: _decrementCounter),
-              ],
+            //grey Color(0xFFbfb8bf),
+            //win95titlecolor Color.fromARGB(255, 42, 0, 124),
+            //win95defaultbackgroundColor: const Color.fromARGB(255, 0, 129, 130),
+            Text('\nkeygen95',
+                style:
+                    _winFontStyle.copyWith(color: Colors.white, fontSize: 50)),
+            Text(''),
+            new Win95WindowFrame(
+              title: 'Microsoft \'95 keygen',
+              maxWidth: 350,
+              child: new Column(children: [
+                new Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Win95Button(text: "10-digit CD keys", onTap: _cdk),
+                    Win95Button(text: "OEM keys", onTap: _oem),
+                  ],
+                ),
+                new Win95WhiteFrame(
+                  minWidth: double.infinity,
+                  child: new Text('$_key',
+                      style: _winFontStyle.copyWith(fontSize: _fontSize)),
+                ),
+              ]),
             ),
           ],
         ),
       ),
-      floatingActionButton: new FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: new Icon(Icons.add),
-      ),
     );
   }
 
-  void _decrementCounter() {
-    setState(() {
-      _counter--;
-    });
+  int _random(int min, int max) {
+    Random random = new Random();
+    return min + random.nextInt(max - min);
   }
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
+  String _gen7() {
+    int randnumb = _random(0, 9999999);
+    List<String> blockedEnd = ["0", "8", "9"];
+    int _temp = 0;
+    while (blockedEnd.contains(
+        randnumb.toString().substring(randnumb.toString().length - 1))) {
+      randnumb = _random(0, 9999999);
+    }
+    int randCopy = randnumb;
+    while (randnumb != 0) {
+      _temp += randnumb % 10;
+      randnumb = (randnumb ~/ 10);
+    }
+    if (_temp % 7 == 0) {
+      return randCopy.toString().padLeft(7, "0");
+    } else
+      return null;
+  }
+
+  //OEM keys
+  _oem() {
+    _key = "";
+    for (int i = 0; i < 10; i++) {
+      int date = _random(1, 366);
+      List<String> years = ["00", "01", "03", "95", "96", "97", "98", "99"];
+      String year = years[_random(0, years.length - 1)];
+      String mid = _gen7.call();
+      while (mid == null) {
+        mid = _gen7.call();
+      }
+      String generatedKey = date.toString().padLeft(3, "0") +
+          year +
+          "-OEM-" +
+          mid +
+          "-" +
+          _random(0, 99999).toString().padLeft(5, "0");
+      setState(() {
+        if (i == 9)
+          _key += ' ' + generatedKey + ' ';
+        else
+          _key += ' ' + generatedKey + ' \n';
+      });
+    }
+  }
+
+// 10-digit CD keys
+  _cdk() {
+    _key = "";
+    for (int i = 0; i < 10; i++) {
+      List<int> blocked3 = [333, 444, 555, 666, 777, 888, 999];
+      int firstThree = _random(0, 999);
+      while (blocked3.contains(firstThree)) {
+        firstThree = _random(0, 999);
+      }
+      String _three = firstThree.toString().padLeft(3, "0");
+      String last = _gen7.call();
+      while (last == null) {
+        last = _gen7.call();
+      }
+      //print(_three + "-" + last);
+      String generatedKey = _three + "-" + last;
+      setState(() {
+        if (i == 9)
+          _key += ' ' + generatedKey + ' ';
+        else
+          _key += ' ' + generatedKey + ' \n';
+      });
+    }
   }
 }
 
+// win95 button
 class _Win95ButtonState extends State<Win95Button> {
   static const _backgroundColor = const Color(0xFFbfb8bf);
 
@@ -184,7 +260,7 @@ class _Win95ButtonState extends State<Win95Button> {
           textAlign: TextAlign.center,
           style: TextStyle(
             color: Colors.black,
-            fontSize: 18.0,
+            fontSize: _fontSize,
             fontFamily: 'RedAlert',
           ),
         ),

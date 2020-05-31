@@ -1,5 +1,5 @@
-name: windows95_flutter
-description: A new Flutter application.
+name: keygen95
+description: Simple Microsoft'95 keygen
 
 dependencies:
   flutter:
@@ -7,6 +7,7 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
+  flutter_launcher_icons: "^0.7.0"
   cupertino_icons: ^0.1.2
 
 dev_dependencies:
@@ -16,7 +17,13 @@ dev_dependencies:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://www.dartlang.org/tools/pub/pubspec
-
+flutter_icons:
+    ios: true
+    android: true
+    web: true
+    image_path_ios: "icon.png"
+    image_path_android: "icon.png"
+    image_path_web: "icon.png"
 # The following section is specific to Flutter.
 flutter:
 
@@ -45,3 +52,5 @@ flutter:
     - family: RedAlert
       fonts:
         - asset: fonts/c-and-c-red-alert-inet.ttf
+
+  
