@@ -1,6 +1,6 @@
-# keygen95 
+# keygen95
 
-![Screenshot](https://i.imgur.com/6onbxRS.png)
+![Screenshot](https://i.imgur.com/JH8S2n1.png)
 
 Just a very simple (my first in flutter) app to generate keys for Microsoft products from '95 era, as described by [medium.com](https://medium.com/@dgurney/so-you-want-to-generate-license-keys-for-old-microsoft-products-a355c8bf5408).
 

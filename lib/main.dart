@@ -55,6 +55,8 @@ String _key = "";
 
 num _fontSize = 25.0;
 
+bool _whiteVisibile = false;
+
 class _MyHomePageState extends State<MyHomePage> {
   static final _winFontStyle = TextStyle(
     color: Colors.black,
@@ -90,10 +92,13 @@ class _MyHomePageState extends State<MyHomePage> {
                     Win95Button(text: "OEM keys", onTap: _oem),
                   ],
                 ),
-                new Win95WhiteFrame(
-                  minWidth: double.infinity,
-                  child: new Text('$_key',
-                      style: _winFontStyle.copyWith(fontSize: _fontSize)),
+                new Visibility(
+                  visible: _whiteVisibile,
+                  child: new Win95WhiteFrame(
+                    minWidth: double.infinity,
+                    child: new Text('$_key',
+                        style: _winFontStyle.copyWith(fontSize: _fontSize)),
+                  ),
                 ),
               ]),
             ),
@@ -130,6 +135,7 @@ class _MyHomePageState extends State<MyHomePage> {
   //OEM keys
   _oem() {
     _key = "";
+    _whiteVisibile = true;
     for (int i = 0; i < 10; i++) {
       int date = _random(1, 366);
       List<String> years = ["00", "01", "03", "95", "96", "97", "98", "99"];
@@ -156,6 +162,7 @@ class _MyHomePageState extends State<MyHomePage> {
 // 10-digit CD keys
   _cdk() {
     _key = "";
+    _whiteVisibile = true;
     for (int i = 0; i < 10; i++) {
       List<int> blocked3 = [333, 444, 555, 666, 777, 888, 999];
       int firstThree = _random(0, 999);
